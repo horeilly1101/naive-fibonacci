@@ -10,12 +10,12 @@ pattern = re.compile("\\b[1-9][0-9]*\\b")
 n = re.search(pattern, n_inp).group(0)
 
 # retrieve running time in C
-subprocess.call(['gcc', '-o', 'fib', 'fib.c'])
-ctime = subprocess.check_output(['./fib', n])
+subprocess.call(['gcc', '-o', 'new', 'new.c'])
+ctime = subprocess.check_output(['./new', n])
 
 # retrieve running time in java
-subprocess.call(['javac', 'Fib.java'])
-javatime = subprocess.check_output(['java', 'Fib', n])
+subprocess.call(['javac', 'Play.java'])
+javatime = subprocess.check_output(['java', 'Play', n])
 
 # retrieve running time in Python
 start = time.time()

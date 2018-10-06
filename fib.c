@@ -5,7 +5,7 @@
 //  Created by Hugh O'Reilly on 10/6/18.
 //
 
-#include "new.h"
+#include "fib.h"
 #include <time.h>
 #include <stdlib.h>
 
