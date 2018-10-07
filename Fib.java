@@ -1,8 +1,6 @@
 import java.util.*;
 
 public class Fib {
-
-
   /*
   * Implements a naive recursive implementation of the
   * fibonacci sequence. fib(i) returns the ith element
