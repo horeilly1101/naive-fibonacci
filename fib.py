@@ -1,6 +1,7 @@
 '''
 contains a naive recursive implementation of 
-the fibonacci sequence'''
+the fibonacci sequence
+'''
 
 def fib(num):
 	'''

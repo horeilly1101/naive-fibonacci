@@ -21,6 +21,9 @@ ctime = subprocess.check_output(['./fib', n])
 subprocess.call(['javac', 'Fib.java'])
 javatime = subprocess.check_output(['java', 'Fib', n])
 
+# retrieve running time in js
+jstime = subprocess.check_output(['node', 'fib.js', n])
+
 # retrieve running time in Python
 start = time.time()
 fib(int(n))
@@ -40,6 +43,11 @@ print()
 # print java time
 print("Running time in Java:")
 print("    ", make_num(javatime), "seconds")
+print()
+
+# print JavaScript time
+print("Running time in JavaScript:")
+print("    ", make_num(jstime), "seconds")
 print()
 
 # print Python time
