@@ -13,16 +13,45 @@ n_inp = input("What term of the sequence would you like to calculate naively?\n 
 pattern = re.compile("\\b[1-9][0-9]*\\b")
 n = re.search(pattern, n_inp).group(0)
 
-# retrieve running time in C
-subprocess.call(['gcc', '-o', 'fib', 'fib.c'])
-ctime = subprocess.check_output(['./fib', n])
+def run_program(run, build=[]):
+	'''
+	takes the command line arguments to build
+	and run code in some arbitrary programming
+	language
 
-# retrieve running time in java
-subprocess.call(['javac', 'Fib.java'])
-javatime = subprocess.check_output(['java', 'Fib', n])
+	kw args:
+		build -- a list of cl args to build a program
 
-# retrieve running time in js
-jstime = subprocess.check_output(['node', 'fib.js', n])
+		run -- a list of cl args to run a program
+
+	returns:
+		output string
+	'''
+	if build:
+		subprocess.call(build)
+	return subprocess.check_output(run)
+
+def print_runtime(time, lang):
+	'''
+	takes the running time and language and prints
+	to the terminal
+
+	kw args:
+		time (string) -- time in seconds
+
+		lang (string) -- the corresponding language
+			name
+	'''
+	# print time
+	print("Running time in {}:".format(lang))
+	print("    ", make_num(time), "seconds")
+	print()
+
+# retrive running times
+ctime = run_program(['./fib', n], ['gcc', '-o', 'fib', 'fib.c'])
+javatime = run_program(['java', 'Fib', n], ['javac', 'Fib.java'])
+jstime = run_program(['node', 'fib.js', n])
+gotime = run_program(['./fib', n, 'cd', '../../..'], ['cd', 'go/src/fib', '&&', 'go', 'build'])
 
 # retrieve running time in Python
 start = time.time()
@@ -36,19 +65,16 @@ print("-"*40)
 print()
 
 # print C time
-print("Running time in C:")
-print("    ", make_num(ctime), "seconds")
-print()
+print_runtime(ctime, "C")
 
 # print java time
-print("Running time in Java:")
-print("    ", make_num(javatime), "seconds")
-print()
+print_runtime(javatime, "Java")
 
 # print JavaScript time
-print("Running time in JavaScript:")
-print("    ", make_num(jstime), "seconds")
-print()
+print_runtime(jstime, "JavaScript")
+
+# print Go time
+print_runtime(gotime, "Go")
 
 # print Python time
 print("Running time in Python:")
